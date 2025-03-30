@@ -1,40 +1,65 @@
 {% extends './base/base.html' %}
 
-
 {% block content %} 
-<link rel="stylesheet" href="../static/css/allData.css" version="1">
-<div id="container" class="container">
-    <h1 class="text-center">Student Records</h1>
+{% comment %} <link rel="stylesheet" href="../static/css/allData.css" version="1"> {% endcomment %}
+{% comment %} alldata.css file is not fully optimized as allData.min.css file. alldata.css file is more suitable for development purposes {% endcomment %}
+<link rel="stylesheet" href="../static/css/allData.min.css" version="1">
+
+<div class="skeleton-loader" id="skeleton-loader">
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
 </div>
 
-<div class="container">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
+<section>
+	<div class="container" id="user-cards">
+        {% for record in records %}
+        <div class="card">
+            <div class="content">
+                <div>
+                    <span>{{ record.id }}</span>
+                </div>
+                <div class="imgBx">
+                    <img src="../static/img/default_profile.png" alt="" loading="lazy">
+                </div>
+                <div class="contentBx">
+                    <h3>{{ record.firstName }} {{ record.lastName }}<br><span>{{ record.email }}</span><br><span>@{{ record.username }}</span></h3>
+                </div>
+            </div>
+            <ul class="sci">
+                <li style="--i:1">
+                    <a href="javascript:;"><i id="facebook" class="fa-brands fa-facebook-f"></i></a>
+                </li>
+                <li style="--i:2">
+                    <a href="javascript:;"><i id="instagram" class="fa-brands fa-instagram"></i></a>
+                </li>
+                <li style="--i:3">
+                    <a href="javascript:;"><i id="whatsapp" class="fa-brands fa-whatsapp"></i></a>
+                </li>
+                <li style="--i:4">
+                    {% comment %} <a id="delete_modal_button" onclick="showDeleteModal({{ record.id }})"><i id="trash" class="fa-solid fa-trash-can"></i></a> {% endcomment %}
+                    <a id="delete_modal_button" href="{% url 'delete' record.id %}"><i id="trash" class="fa-solid fa-trash-can"></i></a>
+                </li>
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</section>
 
-                <th>Edit</th>
-                <th>Delete</th>
-
-            </tr>
-            {% for record in records %}
-            <tr>
-                <td>{{ record.id }}</td>
-                <td>{{ record.firstName }}</td>
-                <td>{{ record.lastName }}</td>
-                <td>{{ record.email }}</td>
-                <td>
-                    <a href="{% url 'edit' record.id %}">Edit</a>
-                </td>
-                <td>
-                    <a href="{% url 'delete' record.id %}" class="btn btn-outline-danger">Delete</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </thead>
-    </table>
+<div id="deleteModal" aria-hidden="true">
+    <div id="delete_ModalHead" class="modal-header">
+        <h2 class="modal-title">Confirm Delete</h2>
+    </div>
+    <div class="modal-body">
+        <h3>Do you really want to <span style="color:#e52020;">Delete</span> this ID: <span id="deleteId"></span>? </h3>
+    </div>
+    
+    <div class="modal-footer">
+            <button id="btn_close" class="btn" onclick="toggleDeleteModal()">Close</button>
+            {% comment %} <a id="btn_logout" class="btn btn-danger m-2">Delete</a> {% endcomment %}
+        </div>
 </div>
+
+<script src="../../../static/js/allData.js"></script>
+
 {% endblock %}

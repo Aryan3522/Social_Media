@@ -1,0 +1,25 @@
+{% extends './base/base.html' %}
+
+{% block content %}
+    <h1>Pending Superuser Requests</h1>
+    {% if pending_requests %}
+        <ul>
+            {% for user in pending_requests %}
+                <li>
+                    {{ user.firstName }} {{ user.lastName }}
+                    <form action="{% url 'handle_approval' user.id True %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">Approve</button>
+                    </form>
+                    <form action="{% url 'handle_approval' user.id False %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">Deny</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No pending requests.</p>
+    {% endif %}
+    <a href="{% url 'home' %}">Back to Home</a>
+{% endblock %}

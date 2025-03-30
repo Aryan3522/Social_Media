@@ -1,13 +1,17 @@
 from django.urls import path
-
-
-from django.views.generic.base import TemplateView
+from . import views
+from django.urls import path
 from . import views
 
-urlpatterns = [ 
+handler404 = views.custom_404_view  # Set the custom 404 view
 
-    # home url
-    path('', TemplateView.as_view(template_name="index.html"), name="home"),
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('signup/', views.create, name='signup'),
+    path('login/', views.login, name='login'),
+    # path('admin_data/', views.admin_data, name='admin_data'),
+    path('approve_superuser/', views.approve_superuser, name='approve_superuser'),
+    path('handle_approval/<int:user_id>/<str:approve>/', views.handle_approval , name='handle_approval'),
     
     # signin and login urls
     path('signin/', views.create, name="create"),
@@ -18,15 +22,12 @@ urlpatterns = [
     path('profile/', views.profile, name="profile"),
     
     # update
-    path('edit/<int:id>/', views.edit, name="edit"),
-    path('update/<int:id>/', views.update, name="update"),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
-    path('admin_edit/', views.admin_edit, name='admin_edit'),
     
     # read page urls + delete
-    path('read/', views.read, name='read'),
+    # path('read/', views.read, name='read'),
     path('delete/<int:id>/', views.delete, name="delete"),
     
     # Admin data URL
-    path('admin_data/', views.admin_data, name='admin_data'),  # Add this line for admin data view
+    path('admin_data/', views.admin_data, name='admin_data'), 
 ]

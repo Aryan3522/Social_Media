@@ -1,0 +1,351 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: comic sans ms;
+  font-weight: 900;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0));
+  min-height: 100vh;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 5%;
+  padding-right: 10rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10; /* to keep the header on top */
+}
+
+#logo {
+  color: #ffffff;
+  font-size: 2rem;
+  z-index: 100;
+  transition: all 0.5s ease-in-out;
+}
+
+#logo:hover {
+  color: rgb(60, 63, 255);
+}
+
+/* header class */
+.nav {
+  display: flex;
+  align-items: center;
+  padding-left: 4rem;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  transition: all 0.3s ease-in-out;
+  width: 100%; /* Full width */
+}
+
+.nav-item {
+  position: relative;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 4rem;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.nav-item:hover  {
+  color: rgb(60, 63, 255);
+}
+
+.nav-item i {
+  color: #f5f5f5;
+  transition: all 0.5s ease-in-out;
+}
+.nav-item:hover i {
+  color: rgb(60, 63, 255);
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: -0.3rem;
+  left: 50%;
+  width: 0;
+  height: 0.15rem;
+  transform: translateX(-50%);
+  background-color: rgb(60, 63, 255);
+  transition: all 0.5s ease-in-out;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+.icons {
+  position: absolute;
+  right: 5%;
+  font-size: 2.3rem;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+}
+
+#check {
+  display: none;
+}
+
+.ham8 .top {
+  stroke-dasharray: 40 172;
+}
+.ham8 .middle {
+  stroke-dasharray: 40 142;
+  transform-origin: 50%;
+  transition: transform 400ms;
+}
+.ham8 .bottom {
+  stroke-dasharray: 40 172;
+}
+.ham8.active .top {
+  stroke-dashoffset: -132px;
+}
+.ham8.active .middle {
+  stroke-dashoffset: -71px;
+}
+.ham8.active .bottom {
+  stroke-dashoffset: -132px;
+}
+.ham {
+  display: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 400ms;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.line {
+  fill: none;
+  transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+  stroke: #ffffff;
+  stroke-width: 5.5;
+  stroke-linecap: round;
+}
+
+.navbar_container {
+  align-items: center;
+}
+
+.modal-title {
+  color: rgb(60, 63, 255);
+}
+
+.close {
+  color: rgb(60, 63, 255);
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#notificationModal {
+  display: none; 
+  width: 100%;
+  position: fixed; /* Fixed positioning */
+  top: 20rem; /* Adjusted top position */
+  left: 50%;
+  height: auto;
+  width: calc(40% - 10rem);
+  min-width: 250px;
+  max-width: 60%;
+  min-height: 150px;
+  border-radius: 2rem;
+  overflow: hidden; 
+  transform: translate(-50%, -50%); 
+  z-index: 1050; 
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  word-wrap: break-word; 
+  margin-top: 20px; /* Adjust as necessary */
+}
+
+#notificationModal.active {
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+#notification_ModalHead {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 1rem;
+}
+
+#notification_ModalHead, .modal-body {
+  width: 100%;
+  color: #f5f5f5;
+  overflow-x: hidden;
+}
+.modal-body {
+  position: relative;
+  text-align: center;
+  padding: 2rem;
+}
+
+#notification_ModalHead .modal-title {
+  position: relative;
+  text-align: center;
+  font-size: 2rem;
+  padding-top: 2rem;
+}
+#noti_btn_close{
+  position: relative;
+  margin: 2rem;
+  background-color: transparent; 
+  color: whitesmoke; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  width: 100px; 
+  height: 50px; 
+  border: 2px solid #e52020; 
+  border-radius: 8px;
+  cursor: pointer; 
+  transition: background-color 0.5s ease; 
+}
+#noti_btn_close:hover{
+  background-color: #e52020;
+}
+.modal-footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@media (max-width: 350px) {
+  .navbar #navbar_ul {
+    display: flex;
+    flex-direction: column;
+  }
+  #navbar_ul li {
+    margin-bottom: 0;
+  }
+  .ham8 {
+    position: relative;
+    top: 20px;
+    font-size: 10px;
+    transition: all 5s ease-in-out;
+  }
+  #logo {
+    transition: all 0.5s ease-in-out;
+  }
+  #notificationModal{
+    margin-left: 2reem;
+  }
+}
+
+@media (min-width: 350px) and (max-width: 860px) {
+  #navbar_ul li {
+    margin-top: 2rem;
+  }
+  .navbar #navbar_ul {
+    display: flex;
+    flex-direction: column;
+  }
+  .nav-item {
+    transition: all 0.5s ease;
+  }
+}
+
+@media (max-width: 860px) { 
+  .nav-item {
+    margin-left: 0;
+  }
+  #navbar_ul li {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  .navbar {
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    position: fixed;
+    right: 0;
+    z-index: 10;
+    border-top: 1px solid whitesmoke;
+    transform: translateY(-20rem); /* start position */
+    transition: top 0.5s ease, transform 0.5s ease; /* Add transition for animation */
+  }
+
+  .navbar.active {
+    top: 4rem; /* Slide in from the top */
+    padding-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 5px 15px rgba(102, 102, 102, 0.2);
+    backdrop-filter: blur(10px);
+    transform: translateY(0);
+  }
+
+  .navbar a {
+    top: -20rem;
+    transform: translateY(-20rem); /* start position */
+    opacity: 0; 
+    width: 100%; 
+    text-align: center; 
+    transition: top 0.5s ease, transform 0.5s ease; /* Add transition for animation */
+  }
+
+  .navbar.active a {
+    top: 0rem;
+    transform: translateY(0); /* Move to original position */
+    opacity: 1; /* Fade in */
+  }
+
+  .ham8 {
+    display: block;
+    position: fixed;
+    height: 4rem;
+    width: 4rem;
+    top: 0px;
+    right: 1rem;
+    z-index: 10000;
+  }
+}
+
+@media (min-width: 860px) and (max-width: 1070px) {
+  .nav-item {
+    margin-left: 1rem;
+  }
+}
+
+/* Media query for notification modal font size adjustment */
+@media (max-width: 1200px) {
+  #notificationModal {
+    font-size: 0.7rem; /* Adjust the font size as needed */
+  }
+  .modal-body{
+    padding-top: 2rem;
+    margin: 0rem;
+  }
+}

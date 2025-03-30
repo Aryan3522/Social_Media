@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'course',
-    'bootstrap5'
+
 ]
 
 MIDDLEWARE = [
@@ -128,11 +128,11 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     STATIC_DIR
 ]
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'course/static/css')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

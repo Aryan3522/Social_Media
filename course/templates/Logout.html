@@ -1,12 +1,15 @@
-{% extends './base/base.html' %} {% load static %} {% load bootstrap5 %} 
+{% extends './base/base.html' %} 
+{% load static %} 
 {%block content %}
-<body>
-  <div class="contaier m-5 p-5">
+<link rel="stylesheet" href="../../static/css/logoutStyle.css" version="1" />
+
+
+  <div id="i" class="container">
     <h1>You have been logged out!</h1>
     <br />
     <h3>
       <a href="{% url 'login' %}">Login again?</a>
     </h3>
   </div>
-</body>
+
 {% endblock %}

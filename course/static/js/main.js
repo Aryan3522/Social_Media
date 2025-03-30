@@ -1,5 +1,22 @@
 const passwordField = document.getElementById("password")
 
+function validatePasswords() {
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('Confirm_password').value;
+    if (password !== confirmPassword) {
+      document.getElementById('Signup_alert_modal_alert').innerText = "Passwords do not match!";
+      document.getElementById('Signup_alert_modal').style.display = 'block'; // Show the modal
+
+      // Hide the modal after 3 seconds
+      setTimeout(() => {
+        document.getElementById('Signup_alert_modal').style.display = 'none'; // Hide the modal after 3 seconds
+      }, 5000);
+
+      return false; // Prevent form submission
+    }
+    return true; // Allow form submission
+  }
+
 const handleMouseMove = event => {
     if (!document.querySelector("#password:is(:focus)") && !document.querySelector("#password1:is(:focus)") && !document.querySelector("#password:is(:user-invalid)")) {
         const eyes = document.getElementsByClassName('eye')
