@@ -6,9 +6,6 @@
 #heading {
   padding-top: 10rem;
 }
-.container {
-  padding-top: 5rem;
-}
 .skeleton-loader {
   display: flex;
   justify-content: center;
@@ -35,24 +32,7 @@
     background: #e0e0e0;
   }
 }
-#table {
-  font-family: cursive;
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px solid white;
-}
-#table th,
-#table td {
-  text-align: center;
-  padding: 1rem;
-  border: 1px dashed white;
-}
-#table tr:hover {
-  cursor: default;
-}
-.delete-text {
-  color: whitesmoke;
-}
+
 .btn {
   border-color: #e52020;
   padding: 10px 20px;
@@ -122,7 +102,7 @@ section::after {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin: 40px 0;
+  margin: 4rem 0;
 }
 .container .card {
   position: relative;
@@ -216,8 +196,9 @@ section::after {
     #cc2366 75%,
     #bc1888 100%
   );
-  -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
+  transition: all 0.5s ease;
 }
 #whatsapp:hover {
   color: #075e54;
@@ -229,11 +210,6 @@ section::after {
 
 #delete_ModalHead {
   margin: 2rem; /* Keep the margin */
-}
-
-#delete_ModalHead .modal-title {
-  text-align: center; /* Center the title */
-  position: relative; /* Keep the close icon in place */
 }
 
 

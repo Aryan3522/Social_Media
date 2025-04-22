@@ -1,6 +1,12 @@
+import datetime
+import os
 from django.db import models
+from django.contrib.auth.models import User
 
-class Courses(models.Model):  # Adding the Courses model
+class Post(models.Model):
+    content = models.TextField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+class Courses(models.Model):
     courseName = models.CharField(max_length=100)
     courseFee = models.DecimalField(max_digits=10, decimal_places=2)
     courseDuration = models.CharField(max_length=100)
@@ -9,7 +15,7 @@ class Signup(models.Model):
     firstName = models.CharField(max_length=100)
     lastName = models.CharField(max_length=100)
     username = models.CharField(max_length=100, default='zoro', db_collation='utf8_bin')
-    email = models.EmailField(unique=True,db_collation='utf8_bin')  # Ensure email is case-sensitive
+    email = models.EmailField(unique=True,db_collation='utf8_bin')
     password = models.CharField(max_length=100)
     last_login = models.DateTimeField(null=True, blank=True) 
     is_superuser = models.BooleanField(default=False)  
@@ -17,11 +23,11 @@ class Signup(models.Model):
 class Admin_Signup(models.Model):
     firstName = models.CharField(max_length=100)
     lastName = models.CharField(max_length=100)
-    username = models.CharField(max_length=100, unique=True, default='zoro', db_collation='utf8_bin')  # Added username field
-    email = models.EmailField(unique=True,db_collation='utf8_bin')  # Updated to ensure email is unique
+    username = models.CharField(max_length=100, unique=True, default='zoro', db_collation='utf8_bin')
+    email = models.EmailField(unique=True,db_collation='utf8_bin')
     password = models.CharField(max_length=100)
-    last_login = models.DateTimeField(null=True, blank=True)  # Added last_login field
-    is_superuser = models.BooleanField(default=False)  # Added is_superuser field
+    last_login = models.DateTimeField(null=True, blank=True)
+    is_superuser = models.BooleanField(default=False)
 
     def get_superuser_details(self):
         if self.is_superuser:
@@ -41,3 +47,14 @@ class Notification(models.Model):
 
     def __str__(self):
         return self.message
+
+def filepath(request, filename):
+    old_filename = filename
+    timeNow = datetime.datetime.now().strftime('%Y%m%d%H:%M:%S')
+    filename = "%s%s" % (timeNow, old_filename)
+    return os.path.join("uploads/", filename)
+class Image(models.Model):
+    image = models.ImageField(upload_to=filepath,default='zoro') 
+    
+# class UserName_Check(models.Model):
+#     username = models.CharField(max_length=100, default='zoro', db_collation='utf8_bin')

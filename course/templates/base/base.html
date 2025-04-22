@@ -3,18 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Social Media</title>
-    <link rel="icon" href="../../static/img/Spotify_logo.svg" type="image/svg+xml" />
+    <title>Doraemon</title>
+    <link rel="icon" href="../../static/img/doraemon.png" type="image/svg+xml"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-    
-
     <link rel="stylesheet" href="/static/css/base.css" version="1" />
     <link rel="stylesheet" href="/static/css/background.css" version="1" />
-
-    
+   
   </head>
   <body>
-    <canvas id='c'loading="lazy"></canvas>
+    <div id="greetings_modal_modal">
+      {% if messages %}
+        {% for message in messages %}
+          <div id="greetings_modal_message">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <canvas id='c'></canvas>
     <header class="nav">
       <a href="{% url 'home' %}" >
           <i id="logo" class="fa-solid fa-circle-notch"> </i>
@@ -60,22 +64,8 @@
     </header>
     {% block content %} {% endblock %}
 
-    {% comment %} <div id="notificationModal" aria-hidden="true">
-          <div id="notification_ModalHead" class="modal-header">
-            <h2 class="modal-title">Notifications</h2>
-            <span class="close" onclick="toggleModal()">&times;</span> 
-          </div>
-          <div class="modal-body">
-            <ul id="notificationList">
-              {% for notification in notifications %}
-                  <li>{{ notification.message }} - {{ notification.created_at }}</li>
-              {% empty %}
-                  <li>No notifications available.</li>   
-              {% endfor %}
-            </ul>
-          </div>
-    </div> {% endcomment %}
-    <div id="notificationModal" aria-hidden="true">
+   
+    <div id="notificationModal">
       <div id="notification_ModalHead" class="modal-header">
         <h2 class="modal-title">Notifications</h2>
       </div>

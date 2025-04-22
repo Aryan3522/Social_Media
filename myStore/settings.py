@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'course',
+     'corsheaders',
 
 ]
 
@@ -51,7 +52,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:8000',
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'myStore.urls'
 
@@ -137,3 +146,5 @@ SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'course/static/css')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

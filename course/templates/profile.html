@@ -3,39 +3,90 @@
 {% block content %}
 <link rel="stylesheet" href="../static/css/profile.css" version="1" >
 
-
-
 <section>
-	<div class="container" id="user-cards">
-            <div class="card">
-                <div class="content">
-                    <div class="imgBx">
-                        <img src="../static/img/default_profile.png" alt="" loading="lazy">
-                    </div>
-                    <div class="contentBx">
-                        <h3>{{ user_details.firstName }} {{ user_details.lastName }}<br>
-                            <span>{{ user_details.email }}</span><br>
-                            <span>@{{ user_details.username }}</span>
-                        </h3>
-                    </div>
-                </div>
-                <ul class="sci">
-                    <li style="--i:1">
-                        <a href="javascript:;"><i id="whatsapp" class="fa-brands fa-whatsapp"></i></a>
-                    </li>
-                    <li style="--i:2">
-                        <a href="javascript:;"><i id="instagram" class="fa-brands fa-instagram"></i></a>
-                    </li>
-                    <li style="--i:3">
-                        <a href="{% url 'edit_profile' %}"><i id="edit" class="fa-solid fa-pen-to-square"></i></a>
-                    </li>
-                    <li style="--i:4">
-                        <a id="logout_modal_button" onclick="toggleLogoutModal()"><i id="logout" class="fa-solid fa-arrow-right-from-bracket"></i></a>
-                    </li>
-                </ul>
-            </div>
+	<div class="profile_container" id="user-cards">
+    <div class="profile_card">
+      <div class="profile_card_content">
+        <div class="profile_card_content_imgBx">
+          <img src="../static/img/default_profile.png" alt="" loading="lazy">
+        </div>
+        <div class="profile_card_content_contentBx">
+          <h3>{{ user_details.firstName }} {{ user_details.lastName }}<br>
+            <span>{{ user_details.email }}</span><br>
+            <span>@{{ user_details.username }}</span>
+          </h3>
+        </div>
+      </div>
+        <ul class="sci">
+          <li style="--i:1">
+            <a href="javascript:;"><i id="whatsapp" class="fa-brands fa-whatsapp"></i></a>
+          </li>
+          <li style="--i:2">
+            <a href="javascript:;"><i id="share" class="fa-solid fa-share-nodes"></i></a>
+          </li>
+          <li style="--i:3">
+            <a href="{% url 'edit_profile' %}"><i id="edit" class="fa-solid fa-pen-to-square"></i></a>
+          </li>
+          <li style="--i:4">
+            <a id="logout_modal_button" onclick="toggleLogoutModal()"><i id="logout" class="fa-solid fa-arrow-right-from-bracket"></i></a>
+          </li>
+        </ul>
+      </div>
 	</div>
 </section>
+
+{% comment %} post modal {% endcomment %}
+<div class="container" id="user-cards">
+    {% for i in img %}  
+    <div class="card">
+        <div class="content">
+            {% if user_details %}
+            <div class="username-display" style="color:white; font-weight:bold;">
+                <a href="{% url 'profile' %}"> 
+                    @{{ user_details.username }}
+                </a>
+            </div>
+            {% endif %}
+            {% if i.image.url %}
+            <div id="postsContainer" >
+                <img src="{{ i.image.url }}"/> 
+            </div>
+            {% endif %}
+            
+        </div>
+        <ul class="sci">
+          <li style="--i: 1">
+            <a href="javascript:;">
+              <i id="like" class="fa-regular fa-heart"></i>
+            </a>
+          </li>
+          <li style="--i: 2">
+            <a href="javascript:;"><i class="fa-regular fa-comments"></i></a>
+          </li>
+          <li style="--i: 3">
+            <a href="javascript:;"><i id="share" class="fa-solid fa-share-nodes"></i></a>
+          </li>
+          <li style="--i:4">
+            <a id="delete_modal_button" href="javascript:void(0);" onclick="confirmDelete({{ i.id }})"><i id="trash" class="fa-solid fa-trash-can"></i></a>
+            </li>
+        </ul>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div id="deleteModal" aria-hidden="true">
+    <div id="delete_ModalHead" class="modal-header">
+        <h2 class="modal-title">Confirm Delete</h2>
+    </div>
+    <div class="modal-body">
+        <h3>Do you really want to <span style="color:#e52020;">Delete</span> this ID: <span id="deleteId"></span>? </h3>
+    </div>
+    <div class="modal-footer">
+            <button id="btn_close" onclick="toggleDeleteModal()">Close</button>
+            <a id="btn_logout" onclick="deleteRecord()">Delete</a>
+        </div>
+  </div>
+  
 
         <div id="logoutModal" aria-hidden="true">
           <div id="logout_ModalHead" class="modal-header">
@@ -52,4 +103,5 @@
 
 	<script src="../static/js/profile.js"></script>
 
+  
 {% endblock %}

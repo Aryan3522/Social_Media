@@ -7,7 +7,6 @@ Viki */
 }
 
 :root {
-  /* font-family: 'Poppins', sans-serif; */
   line-height: 1.5;
   font-weight: 400;
   color-scheme: #000;
@@ -29,7 +28,9 @@ main {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   padding-bottom: 0;
-  margin-top: 5rem;
+  padding: 5rem;
+  height: auto;
+  border-radius: 20px;
 }
 
 section {
@@ -496,7 +497,7 @@ a {
   overflow: hidden; 
   transform: translate(-50%, -50%); 
   z-index: 1050; 
-  background: rgba(255, 0, 0, 0.05);
+  /* background: rgba(255, 0, 0, 0.05); */
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   word-wrap: break-word; 

@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<link rel="stylesheet" href="../static/css/add_image.css" version="1" />
+
+<div id="user-cards">
+  <div id="card">
+      <div id="content">
+        <div id="postsContainer" >
+          <img id="blah" alt="your image" />
+        </div>
+          
+      </div>
+      <ul id="sci">
+        <li style="--i: 1">
+          <a href="javascript:;">
+            <i id="like" class="fa-regular fa-heart"></i>
+          </a>
+        </li>
+        <li style="--i: 2">
+          <a href="javascript:;"><i class="fa-regular fa-comments"></i></a>
+        </li>
+        <li style="--i: 3">
+          <a href="javascript:;"><i id="share" class="fa-solid fa-share-nodes"></i></a>
+        </li>
+      </ul>
+  </div>
+</div>
+
+<div id="add_image">
+    <form id="add_image_form" class="my-5" method="POST" enctype="multipart/form-data">
+        {% csrf_token %} 
+        <label for="file_input" id="custom_file_upload">
+          Choose Image
+        </label>
+        <input id="file_input" type="file" name="image" id="photoInput" onclick="file()" multiple />
+        <button id="image_upload_button" type="submit" name="upload">Upload</button>
+    </form>
+</div>
+
+<script src="../../../static/js/add_image.js"></script>
+
+{% endblock %}

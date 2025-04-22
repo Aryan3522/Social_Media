@@ -12,8 +12,13 @@ function toggleDeleteModal() {
     }
 }
 
-// function showDeleteModal(id) {
-//     document.getElementById('deleteId').innerText = id; 
-//     document.getElementById('btn_logout').href = "{% url 'delete' __ID__ %}".replace('__ID__', id);
-//     toggleDeleteModal(); 
-// }
+function confirmDelete(recordId) {
+    document.getElementById('deleteId').innerText = recordId;
+    document.getElementById('deleteModal').style.display = 'block';
+    toggleDeleteModal();
+}
+
+function deleteRecord() {
+    const recordId = document.getElementById('deleteId').innerText;
+    window.location.href = "/delete/" + recordId;
+}

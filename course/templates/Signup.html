@@ -93,13 +93,14 @@
         id="submit"
         name="signup"
         value="register"
+        onclick="validatePassword()"
       >
         Sign Up
       </button>
     </form>
 
     <p class="form__footer text-center">
-      Already have an account? <a href="{% url 'login' %}"> Log In</a>
+      Already have an account? <br/> <a href="{% url 'login' %}"> Log In</a>
     </p>
   </section>
 
@@ -119,26 +120,8 @@
   </section>
 </main>
 
-<!-- Alert Modal -->
-{% if messages %}
-<div id="Signup_alert_modal" >
-  {% for message in messages %}
-  <div id="Signup_alert_modal_alert">{{ message }}</div>
-  {% endfor %}
-</div>
-{% endif %}
 
 <script src="../../static/js/main.js"></script>
-<script>
-function validatePassword() {
-    var password = document.getElementById("password").value;
-    var confirmPassword = document.getElementById("Confirm_password").value;
-    if (password !== confirmPassword) {
-        alert("Passwords do not match.");
-        return false; // Prevent form submission
-    }
-    return true; // Allow form submission
-}
-</script>
+
 
 {% endblock %}

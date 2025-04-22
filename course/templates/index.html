@@ -1,27 +1,104 @@
-{% extends 'base/base.html' %} 
+{% extends 'base/base.html' %}
 {% block content %}
 <link rel="stylesheet" href="../../static/css/index.css" version="1" />
-{% comment %} <link rel="stylesheet" href="../../static/css/button_style.css" version="1" /> {% endcomment %}
-
-  
-  <!-- Post Button -->
-  <button id="post_button" class="btn" onclick="togglePostModal()">Post</button>
 
 
+{% comment %} <div id="greetings_modal_modal">
+  {% if messages %}
+    {% for message in messages %}
+      <div id="greetings_modal_message">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+</div> {% endcomment %}
 
-<div id="postModal" aria-hidden="true">
+<div id="user-cards">
+  {% for i in img %}  
+  <div id="card">
+      <div id="content">
+        {% if user_details %}
+      <div id="username-display" style="color:white; font-weight:bold;">
+         <a href="{% url 'profile' %}"> 
+          @{{ user_details.username }}
+         </a>
+      </div>
+      {% endif %}
+        <div id="postsContainer" >
+          <img src="{{ i.image.url }}"/> 
+        </div>
+          
+      </div>
+      <ul id="sci">
+        <li style="--i: 1">
+          <a href="javascript:;">
+            <i id="like" class="fa-regular fa-heart"></i>
+          </a>
+        </li>
+        <li style="--i: 2">
+          <a href="javascript:;"><i class="fa-regular fa-comments"></i></a>
+        </li>
+        <li style="--i: 3">
+          <a href="javascript:;"><i id="share" class="fa-solid fa-share-nodes"></i></a>
+        </li>
+      </ul>
+  </div>
+  {% endfor %}
+</div>
+
+<div id="deleteModal" aria-hidden="true">
+  <div id="delete_ModalHead" class="modal-header">
+      <h2 class="modal-title">Confirm Delete</h2>
+  </div>
+  <div class="modal-body">
+      <h3>Do you really want to <span style="color:#e52020;">Delete</span> this ID: <span id="deleteId"></span>? </h3>
+  </div>
+  <div class="modal-footer">
+          <button id="btn_close" onclick="toggleDeleteModal()">Close</button>
+          <a id="btn_logout" onclick="deleteRecord()">Delete</a>
+      </div>
+</div>
+
+
+{% if request.session.user_id %}
+<!-- Post Button -->
+<button id="post_button" onclick="togglePostModal()">Post</button>
+
+
+<!-- Write_Post Modal -->
+
+<div id="writePostModal" class="post-input-container">
+  <span class="close" id="close" onclick="toggleWritePostModal()">&times;</span>
+  <textarea id="postContent" placeholder="What's on your mind?" class="post-textarea"></textarea>
+  <button class="send-post-btn" >
+    <a href="{% url 'add_img' %}">
+      <i id="sendPostBtn" class="fa-solid fa-paper-plane"></i>
+    </a>
+  </button>
+</div>
+
+
+<!-- Post Modal -->
+<div id="postModal">
   <div id="header">
     <div id="ModalHead" class="modal-header">
-      <h3>What do  you  want to post?</h3>
+      <h3>Create a New Post</h3>
     </div>
     <span class="close" onclick="togglePostModal()">&times;</span>
   </div>
-      <div class="modal-body">
-          <button class="btn">Photo</button>
-          <button class="btn">Video</button>
-          <button class="btn">Create Post</button>
-      </div>
+  <div class="modal-body">
+    <div class="modal-actions">
+        <button class="btn photo-action" id="write_post" onclick="toggleWritePostModal()"> Write Post?</button>
+      <a href="{% url 'add_img' %}">
+        <button type="submit" class="btn" id="AddphotoButton">Add Photo</button>
+      </a>
+    </div>
+  </div>
 </div>
+{% endif %}
+
+
+
 <script src="../../../static/js/home.js"></script>
+
+
 
 {% endblock %}

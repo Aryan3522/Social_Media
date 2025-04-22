@@ -48,7 +48,9 @@ function toggleModal() {
     modal.style.display = modal.style.display === 'block' ? 'none' : 'block'; // Toggle modal visibility
 }
 
-let PARTICLE_NUM = 500;
+
+// let PARTICLE_NUM = 500;
+let PARTICLE_NUM = 50;
 let PARTICLE_BASE_RADIUS = 0.5;
 let FL = 500;
 let DEFAULT_SPEED = 2;

@@ -12,7 +12,10 @@
                         <img src="../static/img/default_profile.png" alt="" loading="lazy">
                     </div>
                     <div class="contentBx">
-                        <h3>{{ user_details.firstName }} {{ user_details.lastName }}<br><span>{{ user_details.email }}</span><br><span>@{{ user_details.username }}</span></h3>
+                        <h3>{{ user_details.firstName }} {{ user_details.lastName }}<br>
+                            <span>{{ user_details.email }}</span><br>
+                            <span>@{{ user_details.username }}</span>
+                        </h3>
                     </div>
                 </div>
                 <ul class="sci">
@@ -20,7 +23,7 @@
                         <a href="javascript:;"><i id="whatsapp" class="fa-brands fa-whatsapp"></i></a>
                     </li>
                     <li style="--i:2">
-                        <a href="javascript:;"><i id="instagram" class="fa-brands fa-instagram"></i></a>
+                        <a href="javascript:;"><i id="share" class="fa-solid fa-share-nodes"></i></a>
                     </li>
                     <li style="--i:3">
                         <a href="{% url 'edit_profile' %}"><i id="edit" class="fa-solid fa-pen-to-square"></i></a>
