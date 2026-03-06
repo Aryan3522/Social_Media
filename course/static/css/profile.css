@@ -39,12 +39,9 @@ section::after {
 .profile_container .profile_card {
   position: relative;
   width: calc(80% - 10rem);
-  /* width: calc(100%); */
   min-width: 250px;
   max-width: 60%;
-  /* max-width: 100%; */
   min-height: 500px;
-  /* min-height: 80vh; */
   height: auto;
   margin: 4rem;
   border-radius: 15px;
